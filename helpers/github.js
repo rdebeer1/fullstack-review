@@ -1,6 +1,6 @@
 const request = require('request');
 const config = require('../config.js');
-
+let db = require('../database/index.js');
 
 let getReposByUsername = (username) => {
   let options = {
@@ -9,29 +9,27 @@ let getReposByUsername = (username) => {
       'User-Agent': 'request',
       'Authorization': `token ${config.TOKEN}`
     }
-  };
+  }
   request(options, (err, res, body) => {
     if (err) {
        console.log('error')
     } else {
-       console.log('Upload successful!');
+      console.log('WAWAWEEWA');
     }
     var repo = JSON.parse(body);
     for (let i = 0; i < repo.length; i++) {
-      let newRepo = ({
+      let newRepo = new db({
         id: `${repo[i].id}`,
-        name: `${repo[i].name}`,
-        firstLast: `${repo[i].firstLast}`
+        repoName: `${repo[i].name}`,
       })
-      newRepo.save(err, newRepo => {
+      newRepo.save(function(err, newRepo) {
         if(err) {
-          console.error(err)
+          console.error('error')
         } else {
-          console.log('Great Success')
+          console.log('GREAT SUCCESS', newRepo)
         } 
       })
     }
-    res.end();
   })
 }
 

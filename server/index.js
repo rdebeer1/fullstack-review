@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const db = require('../database/index')
+let db = require('../database/index')
 const getReposByUsername = require('../helpers/github')
 let app = express();
 
