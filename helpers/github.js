@@ -14,7 +14,7 @@ let getReposByUsername = (username) => {
     if (err) {
       return console.log('error')
     } else {
-      return console.log('Upload successful! Server responded with:', res);
+      return console.log('Upload successful!');
     }
     let repo = JSON.parse(body);
     for (let i = 0; i < repo.length; i++) {

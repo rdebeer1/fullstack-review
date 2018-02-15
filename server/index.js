@@ -9,7 +9,9 @@ app.use(bodyParser.json())
 
 app.post('/repos', function (req, res) {
   console.log(req.body.username)
-  getReposByUsername.getReposByUsername(req.body.username);
+  let username = req.body.username;
+  getReposByUsername.getReposByUsername(username);
+  res.end();
 });
 
 app.get('/repos', function (req, res) {
