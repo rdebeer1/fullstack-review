@@ -10,8 +10,12 @@ app.use(bodyParser.json())
 app.post('/repos', function (req, res) {
   console.log(req.body.username)
   let username = req.body.username;
-  getReposByUsername.getReposByUsername(username);
-  res.end();
+  getReposByUsername.getReposByUsername(username, () => {
+   db.find({username: req.body.username}).then(found => {
+     console.log(found)
+     res.json(found)
+   })
+  });
 });
 
 app.get('/repos', function (req, res) {

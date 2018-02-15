@@ -18,8 +18,10 @@ class App extends React.Component {
     console.log(`${term} was searched`);
     axios.post('/repos', {username: term})
      .then(res => {
-        return res;
-     })
+        console.log(res);
+     }).catch(err => {
+       console.log(err)
+     }) 
   }
 
   render () {
