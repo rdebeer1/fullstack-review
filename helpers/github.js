@@ -12,18 +12,18 @@ let getReposByUsername = (username) => {
   };
   request(options, (err, res, body) => {
     if (err) {
-      return console.log('error')
+       console.log('error')
     } else {
-      return console.log('Upload successful!');
+       console.log('Upload successful!');
     }
-    let repo = JSON.parse(body);
+    var repo = JSON.parse(body);
     for (let i = 0; i < repo.length; i++) {
       let newRepo = ({
         id: `${repo[i].id}`,
         name: `${repo[i].name}`,
         firstLast: `${repo[i].firstLast}`
       })
-      newRepo.save((err, newRepo) => {
+      newRepo.save(err, newRepo => {
         if(err) {
           console.error(err)
         } else {
